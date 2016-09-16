@@ -25,10 +25,6 @@ bld/
 # Visual Studio 2015 cache/options directory
 .vs/
 
-# DNX
-project.lock.json
-artifacts/
-
 # ReSharper is a .NET coding add-in
 _ReSharper*/
 *.[Rr]e[Ss]harper
@@ -51,8 +47,6 @@ _ReSharper*/
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
-
-
 
 
 # TidalExplorer
