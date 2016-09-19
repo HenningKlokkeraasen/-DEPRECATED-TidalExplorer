@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTidl", "OpenTidl\OpenTidl.csproj", "{3796564B-3A91-4AEE-B859-E7E6BCF1521D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidalExplorer.TidalIntegration", "TidalExplorer.TidalIntegration\TidalExplorer.TidalIntegration.csproj", "{E30BEBBF-31F5-4EAA-9785-F62657F96667}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{3796564B-3A91-4AEE-B859-E7E6BCF1521D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3796564B-3A91-4AEE-B859-E7E6BCF1521D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3796564B-3A91-4AEE-B859-E7E6BCF1521D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30BEBBF-31F5-4EAA-9785-F62657F96667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30BEBBF-31F5-4EAA-9785-F62657F96667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30BEBBF-31F5-4EAA-9785-F62657F96667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30BEBBF-31F5-4EAA-9785-F62657F96667}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

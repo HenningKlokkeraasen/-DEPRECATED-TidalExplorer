@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@model OpenTidl.Models.UserModel
+@if (Model == null)
+{
+    return;
+}
+
+<div class="tidal-profile">
+    <div class="tidal-profile-row">
+        <div class="tidal-profile-cell">
+            @if (!Model.Picture.IsEmpty())
+            {
+                <div class="profilePicture">
+                    <img src="//resources.tidal.com/images/@Model.Picture.Replace("-", "/")/210x210.jpg">
+                </div>
+            }
+        </div>
+        <div class="tidal-profile-cell">
+            You are logged in to Tidal as
+            <br />
+            @Model.FirstName @Model.LastName (@User.Identity.GetUserName())
+        </div>
+    </div>
+</div>
