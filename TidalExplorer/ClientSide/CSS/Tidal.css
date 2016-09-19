@@ -1,0 +1,33 @@
+﻿/*body {
+    background-color: #030303;
+    color: #fafafa;
+    font-family: sans-serif;
+}*/
+
+.tidal-profile {
+    color: #999;
+    display: table;
+    border-spacing: 3px;
+}
+
+    .tidal-profile .tidal-profile-row {
+        display: table-row;
+    }
+
+        .tidal-profile .tidal-profile-row .tidal-profile-cell {
+            display: table-cell;
+        }
+
+            .tidal-profile .tidal-profile-row .tidal-profile-cell .profilePicture {
+                width: 47px;
+                height: 47px;
+                border-radius: 100%;
+                overflow: hidden;
+                margin: 0 auto;
+            }
+
+                .tidal-profile .tidal-profile-row .tidal-profile-cell .profilePicture img {
+                    min-width: 100%;
+                    max-width: 100%;
+                    display: inline;
+                }

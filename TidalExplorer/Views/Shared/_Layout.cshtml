@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ClientSide/CSS/Site.css" />
+    <link rel="stylesheet" href="/ClientSide/CSS/Tidal.css" />
+    <link rel="stylesheet" href="/ClientSide/CSS/bootstrap.min.css" />
+    <title>@ViewBag.Title - Tidal Explorer</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Tidal Explorer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*TODO
+                    <li>@Html.ActionLink("Playlists", "Index", "TidalUserPlaylists")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Tidal Explorer</p>
+    </footer>
+</div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
