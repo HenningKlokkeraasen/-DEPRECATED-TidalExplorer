@@ -1,0 +1,6 @@
+﻿@model string
+@if (Model.IsEmpty())
+{
+    return;
+}
+<img src="//resources.tidal.com/images/@Model.Replace("-", "/")/210x210.jpg">

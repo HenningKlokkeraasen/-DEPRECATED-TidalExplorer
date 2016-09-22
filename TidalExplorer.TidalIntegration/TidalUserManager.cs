@@ -21,7 +21,7 @@ namespace TidalExplorer.TidalIntegration
 
         public static async Task LogOutFromTidal(IIdentity identity)
         {
-            var session = OpenTidlIntegrator.BuildSession(identity);
+            var session = OpenTidlIntegrator.RecreateSessionFromClaimsIdentity(identity);
             await session.Logout();
         }
     }

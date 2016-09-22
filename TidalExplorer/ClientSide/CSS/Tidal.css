@@ -31,3 +31,12 @@
                     max-width: 100%;
                     display: inline;
                 }
+
+img.thumb {
+    width: auto;
+    height: 50px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

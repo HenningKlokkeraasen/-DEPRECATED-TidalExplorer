@@ -1,8 +1,66 @@
-﻿@model dynamic
+﻿@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
 
 @{
     ViewBag.Title = "Tidal Playlists";
+    var counter = 1;
 }
 
-<h2>Playlists</h2>
-<p>TODO</p>
+@section css{
+    <link rel="stylesheet" href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" />
+}
+
+<h2>Yer Tidal Playlists</h2>
+<table id="playlists-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Last updated</th>
+            <th>Duration</th>
+            <th>Tracks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var playlist in Model.Items)
+        {
+            var title = playlist.Title;
+            var created = playlist.Created;
+            var duration = playlist.Duration;
+            var image = playlist.Image;
+            var lastUpdated = playlist.LastUpdated;
+            var numberOfTracks = playlist.NumberOfTracks;
+
+            <tr>
+                <td>@(counter++)</td>
+                <td>
+                    @*
+                        unable to use partial views in async context
+                        @Html.Partial("Partials/TidalImage", image)
+                    *@
+                    @if (image != null)
+                    {
+                        <img src="//resources.tidal.com/images/@image.Replace("-", "/")/320x214.jpg" class="thumb">
+                    }
+                </td>
+                <td>@title</td>
+                <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
+                <td class="nowrap" data-order="@(lastUpdated?.ToString("u"))">@lastUpdated</td>
+                <td class="nowrap">@duration</td>
+                <td class="nowrap">@numberOfTracks</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#playlists-table').DataTable({
+                paging: false
+            });
+        });
+    </script>
+}

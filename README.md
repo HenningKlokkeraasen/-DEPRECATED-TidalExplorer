@@ -7,7 +7,7 @@ Goal:
 
 # Dependencies
 * OpenTidl: Get it from https://github.com/jackfagner/OpenTidl
-* Bootstrap (for now) - get via NuGet but move to /ClientSide/CSS
+* Packages (see packages.config and bower.json)
 
 **Disclaimer:**
 This product uses TIDAL but is not endorsed, certified or otherwise approved in any way by TIDAL. TIDAL is the registered trade mark of Aspiro.
