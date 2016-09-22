@@ -11,7 +11,7 @@
             @if (!Model.Picture.IsEmpty())
             {
                 <div class="profilePicture">
-                    <img src="//resources.tidal.com/images/@Model.Picture.Replace("-", "/")/210x210.jpg">
+                    @Html.Partial("Partials/TidalImage", Model.Picture)
                 </div>
             }
         </div>

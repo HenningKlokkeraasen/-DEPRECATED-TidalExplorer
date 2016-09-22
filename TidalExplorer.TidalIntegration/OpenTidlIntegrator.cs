@@ -10,7 +10,7 @@ namespace TidalExplorer.TidalIntegration
         private static OpenTidlClient _client;
         public static OpenTidlClient Client => _client ?? (_client = new OpenTidlClient(ClientConfiguration.Default));
 
-        public static OpenTidlSession BuildSession(IIdentity identity)
+        public static OpenTidlSession RecreateSessionFromClaimsIdentity(IIdentity identity)
         {
             var tidalLoginModel = TidalClaimsDeserializer.DeserializeLoginModel(identity);
             return new OpenTidlSession(Client, tidalLoginModel);

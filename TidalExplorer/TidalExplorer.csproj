@@ -96,8 +96,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientSide\CSS\bootstrap.css" />
-    <Content Include="ClientSide\CSS\bootstrap.min.css" />
     <Content Include="ClientSide\CSS\Site.css" />
     <Content Include="ClientSide\CSS\Tidal.css" />
     <Content Include="Global.asax" />
@@ -125,10 +123,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Partials\TidalLogin.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\TidalUser\Playlists.cshtml" />
-    <Content Include="Views\TidalUser\Partials\TidalProfile.cshtml" />
+    <Content Include="Views\TidalUser\Partials\UserProfile.cshtml" />
+    <Content Include="Views\TidalUser\Partials\TidalImage.cshtml" />
+    <Content Include="bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

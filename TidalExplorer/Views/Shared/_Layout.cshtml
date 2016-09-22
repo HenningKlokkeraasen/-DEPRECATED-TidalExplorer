@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ClientSide/CSS/Site.css" />
     <link rel="stylesheet" href="/ClientSide/CSS/Tidal.css" />
-    <link rel="stylesheet" href="/ClientSide/CSS/bootstrap.min.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    @RenderSection("css", required: false)
     <title>@ViewBag.Title - Tidal Explorer</title>
 </head>
 <body>
@@ -21,10 +22,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*TODO
-                    <li>@Html.ActionLink("Playlists", "Index", "TidalUserPlaylists")</li>*@
+                    <li>@Html.ActionLink("Playlists", "UserPlaylists", "TidalUser")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("Partials/TidalLogin")
             </div>
         </div>
     </div>
@@ -35,7 +35,8 @@
         <p>&copy; @DateTime.Now.Year - Tidal Explorer</p>
     </footer>
 </div>
-
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,8 +1,17 @@
-﻿@model dynamic
+﻿@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
 
 @{
     ViewBag.Title = "Tidal Playlists";
 }
 
-<h2>Playlists</h2>
-<p>TODO</p>
+
+@section scripts{
+    <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#playlists-table').DataTable({
+                paging: false
+            });
+        });
+    </script>
+}
