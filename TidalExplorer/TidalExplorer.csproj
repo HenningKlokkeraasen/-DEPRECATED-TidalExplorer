@@ -108,10 +108,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TidalUserController.cs" />
+    <Compile Include="Controllers\TidalUserPlaylistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Tidal\ImageViewModel.cs" />
+    <Compile Include="Models\Tidal\PlaylistViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -125,12 +128,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Partials\TidalLogin.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\TidalUser\Playlists.cshtml" />
+    <Content Include="Views\TidalUserPlaylists\Index.cshtml" />
     <Content Include="Views\TidalUser\Partials\UserProfile.cshtml" />
-    <Content Include="Views\TidalUser\Partials\TidalImage.cshtml" />
     <Content Include="bower.json" />
     <Content Include="App_Code\DurationFormatter.cshtml" />
     <Content Include="App_Code\TidalImage.cshtml" />
+    <Content Include="Views\TidalUserPlaylists\Playlist.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

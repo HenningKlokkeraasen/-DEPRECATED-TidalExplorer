@@ -1,17 +1,12 @@
-﻿@helper ProfilePic(string imageId)
-{
-    if (imageId.IsEmpty())
-    {
-        return;
-    }
-    <img src="//resources.tidal.com/images/@imageId.Replace("-", "/")/210x210.jpg">
-}
+﻿@using TidalExplorer.Models.Tidal
 
-@helper PlaylistPic(string imageId)
+@helper Render(ImageViewModel imageViewModel)
 {
-    if (imageId.IsEmpty())
+    if (imageViewModel == null || imageViewModel.ImageId.IsEmpty())
     {
         return;
     }
-    <img src="//resources.tidal.com/images/@imageId.Replace("-", "/")/320x214.jpg" class="thumb">
+    var classes = !imageViewModel.CssClasses.IsEmpty() ? $"class={imageViewModel.CssClasses}" : string.Empty;
+    
+    <img src="//resources.tidal.com/images/@imageViewModel.ImageId.Replace("-", "/")/@(imageViewModel.Dimension).jpg" @classes>
 }

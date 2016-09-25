@@ -1,4 +1,5 @@
-﻿@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
+﻿@using TidalExplorer.Models.Tidal
+@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
 
 @{
     ViewBag.Title = "Tidal Playlists";
@@ -25,6 +26,7 @@
     <tbody>
         @foreach (var playlist in Model.Items)
         {
+            var playlistUuId = playlist.Uuid;
             var title = playlist.Title;
             var created = playlist.Created;
             var duration = playlist.Duration;
@@ -37,10 +39,10 @@
                 <td>
                     @if (image != null)
                     {
-                        @TidalImage.PlaylistPic(image)
+                        @TidalImage.Render(new ImageViewModel { ImageId =  image, Dimension = TidalImageDimension.PlaylistPic, CssClasses = "thumb" })
                     }
                 </td>
-                <td>@title</td>
+                <td>@Html.ActionLink(title, "Playlist", new { playlistUuId = playlistUuId })</td>
                 <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
                 <td class="nowrap" data-order="@(lastUpdated?.ToString("u"))">@lastUpdated</td>
                 <td class="nowrap text-right" data-order="@duration">@DurationFormatter.FormatDuration(duration)</td>
