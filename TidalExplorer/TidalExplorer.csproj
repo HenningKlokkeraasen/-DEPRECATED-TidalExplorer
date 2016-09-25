@@ -129,6 +129,8 @@
     <Content Include="Views\TidalUser\Partials\UserProfile.cshtml" />
     <Content Include="Views\TidalUser\Partials\TidalImage.cshtml" />
     <Content Include="bower.json" />
+    <Content Include="App_Code\DurationFormatter.cshtml" />
+    <Content Include="App_Code\TidalImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

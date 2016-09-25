@@ -35,20 +35,16 @@
             <tr>
                 <td>@(counter++)</td>
                 <td>
-                    @*
-                        unable to use partial views in async context
-                        @Html.Partial("Partials/TidalImage", image)
-                    *@
                     @if (image != null)
                     {
-                        <img src="//resources.tidal.com/images/@image.Replace("-", "/")/320x214.jpg" class="thumb">
+                        @TidalImage.PlaylistPic(image)
                     }
                 </td>
                 <td>@title</td>
                 <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
                 <td class="nowrap" data-order="@(lastUpdated?.ToString("u"))">@lastUpdated</td>
-                <td class="nowrap">@duration</td>
-                <td class="nowrap">@numberOfTracks</td>
+                <td class="nowrap text-right" data-order="@duration">@DurationFormatter.FormatDuration(duration)</td>
+                <td class="nowrap text-right">@numberOfTracks</td>
             </tr>
         }
     </tbody>

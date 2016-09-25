@@ -1,0 +1,17 @@
+﻿@helper ProfilePic(string imageId)
+{
+    if (imageId.IsEmpty())
+    {
+        return;
+    }
+    <img src="//resources.tidal.com/images/@imageId.Replace("-", "/")/210x210.jpg">
+}
+
+@helper PlaylistPic(string imageId)
+{
+    if (imageId.IsEmpty())
+    {
+        return;
+    }
+    <img src="//resources.tidal.com/images/@imageId.Replace("-", "/")/320x214.jpg" class="thumb">
+}

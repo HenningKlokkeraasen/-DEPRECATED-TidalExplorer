@@ -11,7 +11,7 @@
             @if (!Model.Picture.IsEmpty())
             {
                 <div class="profilePicture">
-                    @Html.Partial("Partials/TidalImage", Model.Picture)
+                    @TidalImage.ProfilePic(Model.Picture)
                 </div>
             }
         </div>

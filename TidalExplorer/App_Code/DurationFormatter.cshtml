@@ -1,0 +1,7 @@
+﻿@helper FormatDuration(int duration)
+{
+    var time = TimeSpan.FromSeconds(duration);
+    var formattedTime = time.ToString(@"hh\:mm\:ss");
+
+    <span>@formattedTime</span>
+}
