@@ -68,9 +68,16 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTidl, Version=1.12.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTidl.1.12.2\lib\net45\OpenTidl.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -146,10 +153,6 @@
     <Folder Include="ClientSide\JS\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenTidl\OpenTidl.csproj">
-      <Project>{3796564b-3a91-4aee-b859-e7e6bcf1521d}</Project>
-      <Name>OpenTidl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TidalExplorer.TidalIntegration\TidalExplorer.TidalIntegration.csproj">
       <Project>{e30bebbf-31f5-4eaa-9785-f62657f96667}</Project>
       <Name>TidalExplorer.TidalIntegration</Name>

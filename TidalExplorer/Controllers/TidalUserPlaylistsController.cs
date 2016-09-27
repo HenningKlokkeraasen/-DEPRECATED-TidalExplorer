@@ -10,7 +10,7 @@ namespace TidalExplorer.Controllers
         [Authorize]
         public async Task<ActionResult> Index()
         {
-            var session = OpenTidlIntegrator.RecreateSessionFromClaimsIdentity(User.Identity);
+            var session = await OpenTidlIntegrator.RestoreSessionFromClaimsIdentity(User.Identity);
 
             if (session == null)
                 return new EmptyResult();
@@ -26,7 +26,7 @@ namespace TidalExplorer.Controllers
         [Authorize]
         public async Task<ActionResult> Playlist(string playlistUuId)
         {
-            var session = OpenTidlIntegrator.RecreateSessionFromClaimsIdentity(User.Identity);
+            var session = await OpenTidlIntegrator.RestoreSessionFromClaimsIdentity(User.Identity);
 
             if (session == null)
                 return new EmptyResult();
