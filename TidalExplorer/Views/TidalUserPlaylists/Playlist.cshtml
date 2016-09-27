@@ -1,0 +1,73 @@
+﻿@using TidalExplorer.Models.Tidal
+@model PlaylistViewModel
+
+@{
+    ViewBag.Title = "Playlist " + Model.Playlist.Title;
+}
+
+<h2>Playlist @Model.Playlist.Title</h2>
+
+<div>
+    <div class="col-md-4">
+        @if (Model.Playlist.Image != null)
+        {
+            @TidalImage.Render(new ImageViewModel { ImageId = Model.Playlist.Image, Dimension = TidalImageDimension.PlaylistPic })
+        }
+    </div>
+    <div class="col-md-4">
+        Created: @Model.Playlist.Created
+        <br />
+        Last Updated: @Model.Playlist.LastUpdated
+        <br />
+        Duration: @DurationFormatter.FormatDuration(Model.Playlist.Duration)
+        <br />
+        Number of tracks: @Model.Playlist.NumberOfTracks
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<h3>Tracks</h3>
+@{
+    var trackCounter = 1;
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Artist(s)</th>
+            <th>Title</th>
+            <th>Album</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var track in Model.Tracks.Items)
+        {
+            <tr>
+                <td class="text-right">@(trackCounter++)</td>
+                <td>
+                    @{
+                        var artistCounter = 1;
+                    }
+                    @foreach (var artist in track.Artists)
+                    {
+                        <span>
+                            @artist.Name
+                            @if (artistCounter != track.Artists.Length)
+                            {
+                                @(artistCounter++)
+                                <span>+</span>
+                            }
+                        </span>
+                    }
+                </td>
+                <td>@track.Title</td>
+                <td>
+                    @TidalImage.Render(new ImageViewModel {ImageId = track.Album.Cover, Dimension = TidalImageDimension.AlbumCover, CssClasses = "thumb" })
+                    @track.Album.Title
+                </td>
+                <td>@DurationFormatter.FormatDuration(track.Duration)</td>
+            </tr>
+        }
+    </tbody>
+</table>

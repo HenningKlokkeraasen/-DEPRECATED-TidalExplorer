@@ -1,4 +1,5 @@
-﻿@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
+﻿@using TidalExplorer.Models.Tidal
+@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
 
 @{
     ViewBag.Title = "Tidal Playlists";
@@ -25,6 +26,7 @@
     <tbody>
         @foreach (var playlist in Model.Items)
         {
+            var playlistUuId = playlist.Uuid;
             var title = playlist.Title;
             var created = playlist.Created;
             var duration = playlist.Duration;
@@ -35,20 +37,16 @@
             <tr>
                 <td>@(counter++)</td>
                 <td>
-                    @*
-                        unable to use partial views in async context
-                        @Html.Partial("Partials/TidalImage", image)
-                    *@
                     @if (image != null)
                     {
-                        <img src="//resources.tidal.com/images/@image.Replace("-", "/")/320x214.jpg" class="thumb">
+                        @TidalImage.Render(new ImageViewModel { ImageId =  image, Dimension = TidalImageDimension.PlaylistPic, CssClasses = "thumb" })
                     }
                 </td>
-                <td>@title</td>
+                <td>@Html.ActionLink(title, "Playlist", new { playlistUuId = playlistUuId })</td>
                 <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
                 <td class="nowrap" data-order="@(lastUpdated?.ToString("u"))">@lastUpdated</td>
-                <td class="nowrap">@duration</td>
-                <td class="nowrap">@numberOfTracks</td>
+                <td class="nowrap text-right" data-order="@duration">@DurationFormatter.FormatDuration(duration)</td>
+                <td class="nowrap text-right">@numberOfTracks</td>
             </tr>
         }
     </tbody>

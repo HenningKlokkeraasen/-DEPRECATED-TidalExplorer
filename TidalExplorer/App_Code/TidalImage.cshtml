@@ -1,0 +1,12 @@
+﻿@using TidalExplorer.Models.Tidal
+
+@helper Render(ImageViewModel imageViewModel)
+{
+    if (imageViewModel == null || imageViewModel.ImageId.IsEmpty())
+    {
+        return;
+    }
+    var classes = !imageViewModel.CssClasses.IsEmpty() ? $"class={imageViewModel.CssClasses}" : string.Empty;
+    
+    <img src="//resources.tidal.com/images/@imageViewModel.ImageId.Replace("-", "/")/@(imageViewModel.Dimension).jpg" @classes>
+}

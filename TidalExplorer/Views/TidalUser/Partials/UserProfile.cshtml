@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using TidalExplorer.Models.Tidal
 @model OpenTidl.Models.UserModel
 @if (Model == null)
 {
@@ -11,7 +12,7 @@
             @if (!Model.Picture.IsEmpty())
             {
                 <div class="profilePicture">
-                    @Html.Partial("Partials/TidalImage", Model.Picture)
+                    @TidalImage.Render(new ImageViewModel { ImageId =  Model.Picture, Dimension = TidalImageDimension.ProfilePic })
                 </div>
             }
         </div>
