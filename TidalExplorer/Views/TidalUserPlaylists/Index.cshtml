@@ -2,7 +2,7 @@
 @model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
 
 @{
-    ViewBag.Title = "Tidal Playlists";
+    ViewBag.Title = "Your Playlists";
     var counter = 1;
 }
 
@@ -26,27 +26,19 @@
     <tbody>
         @foreach (var playlist in Model.Items)
         {
-            var playlistUuId = playlist.Uuid;
-            var title = playlist.Title;
-            var created = playlist.Created;
-            var duration = playlist.Duration;
-            var image = playlist.Image;
-            var lastUpdated = playlist.LastUpdated;
-            var numberOfTracks = playlist.NumberOfTracks;
-
             <tr>
                 <td>@(counter++)</td>
                 <td>
-                    @if (image != null)
+                    @if (playlist.Image != null)
                     {
-                        @TidalImage.Render(new ImageViewModel { ImageId =  image, Dimension = TidalImageDimension.PlaylistPic, CssClasses = "thumb" })
+                        @TidalImage.Render(new ImageViewModel { ImageId = playlist.Image, Dimension = TidalImageDimension.PlaylistPic, CssClasses = "thumb" })
                     }
                 </td>
-                <td>@Html.ActionLink(title, "Playlist", new { playlistUuId = playlistUuId })</td>
-                <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
-                <td class="nowrap" data-order="@(lastUpdated?.ToString("u"))">@lastUpdated</td>
-                <td class="nowrap text-right" data-order="@duration">@DurationFormatter.FormatDuration(duration)</td>
-                <td class="nowrap text-right">@numberOfTracks</td>
+                <td>@Html.ActionLink(playlist.Title, "Playlist", new { playlistUuId = playlist.Uuid })</td>
+                <td class="nowrap" data-order="@(playlist.Created?.ToString("u"))">@playlist.Created</td>
+                <td class="nowrap" data-order="@(playlist.LastUpdated?.ToString("u"))">@playlist.LastUpdated</td>
+                <td class="nowrap text-right" data-order="@playlist.Duration">@DurationFormatter.FormatDuration(playlist.Duration)</td>
+                <td class="nowrap text-right">@playlist.NumberOfTracks</td>
             </tr>
         }
     </tbody>

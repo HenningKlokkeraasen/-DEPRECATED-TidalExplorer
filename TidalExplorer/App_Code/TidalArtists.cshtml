@@ -1,0 +1,18 @@
+﻿@using OpenTidl.Models
+@helper Render(ArtistModel[] artists)
+{
+    var artistCounter = 1;
+    foreach (var artist in artists)
+    {
+        <span>
+            @artist.Name
+            @if (artistCounter != artists.Length)
+            {
+                <span>+</span>
+                {
+                    artistCounter++;
+                }
+            }
+        </span>
+    }
+}

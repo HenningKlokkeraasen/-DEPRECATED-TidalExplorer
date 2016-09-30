@@ -1,0 +1,93 @@
+﻿@using TidalExplorer.Models.Tidal
+@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.Base.JsonListItem<OpenTidl.Models.AlbumModel>>
+@{
+    ViewBag.Title = "Your Favorite Albums";
+    var counter = 1;
+}
+
+@section css{
+    <link rel="stylesheet" href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" />
+}
+
+<h2>Yer Favorite Albums in Tidal</h2>
+<table id="playlists-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Artists</th>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Version</th>
+            <th>No. volumes</th>
+            <th>No. tracks</th>
+            <th>Duration</th>
+            <th>Type</th>
+            <th>Faved</th>
+            <th>Copyright</th>
+            <th>Allow Stream?</th>
+            <th>Stream Ready?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jsonListItem in Model.Items)
+        {
+            var created = jsonListItem.Created;
+
+            var album = jsonListItem.Item;
+            var albumId = album.Id;
+            var copyright = album.Copyright;
+            var albumReleaseDate = album.ReleaseDate;
+            var albumVersion = album.Version;
+            var albumUrl = album.Url;
+            var albumETag = album.ETag;
+
+            <tr>
+                <td>@(counter++)</td>
+                <td>
+                    @if (album.Cover != null)
+                    {
+                        @TidalImage.Render(new ImageViewModel { ImageId = album.Cover, Dimension = TidalImageDimension.AlbumCover, CssClasses = "thumb" })
+                    }
+                </td>
+                <td>@TidalArtists.Render(album.Artists)</td>
+                <td>@album.Title</td>
+                <td>@album.ReleaseDate</td>
+                <td>@album.Version</td>
+                <td class="nowrap text-right">@album.NumberOfVolumes</td>
+                <td class="nowrap text-right">@album.NumberOfTracks</td>
+                <td class="nowrap text-right" data-order="@album.Duration">@DurationFormatter.FormatDuration(album.Duration)</td>
+                <td>@album.Type</td>
+                <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
+                <td>@album.Copyright</td>
+                <td>
+                    @{
+                        if (album.AllowStreaming)
+                        {
+                            <span>v</span>
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        if (album.StreamReady)
+                        {
+                            <span>v</span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#playlists-table').DataTable({
+                paging: false
+            });
+        });
+    </script>
+}

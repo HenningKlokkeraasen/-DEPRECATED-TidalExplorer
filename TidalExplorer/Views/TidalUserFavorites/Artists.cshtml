@@ -1,0 +1,56 @@
+﻿@using TidalExplorer.Models.Tidal
+@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.Base.JsonListItem<OpenTidl.Models.ArtistModel>>
+@{
+    ViewBag.Title = "Your Favorite Artists";
+    var counter = 1;
+}
+
+@section css{
+    <link rel="stylesheet" href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" />
+}
+
+<h2>Yer Favorite Artists in Tidal</h2>
+<table id="playlists-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Faved</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jsonListItem in Model.Items)
+        {
+            var created = jsonListItem.Created;
+
+            var artist = jsonListItem.Item;
+            var artistId = artist.Id;
+            var artistType = artist.Type;
+            var artistUrl = artist.Url;
+            var artistETag = artist.ETag;
+            <tr>
+                <td>@(counter++)</td>
+                <td>
+                    @if (artist.Picture != null)
+                    {
+                        @TidalImage.Render(new ImageViewModel { ImageId = artist.Picture, Dimension = TidalImageDimension.PlaylistPic, CssClasses = "thumb" })
+                    }
+                </td>
+                <td>@artist.Name</td>
+                <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#playlists-table').DataTable({
+                paging: false
+            });
+        });
+    </script>
+}

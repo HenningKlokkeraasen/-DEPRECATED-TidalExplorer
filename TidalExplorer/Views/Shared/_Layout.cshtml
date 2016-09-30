@@ -23,6 +23,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Playlists", "Index", "TidalUserPlaylists")</li>
+                    <li>@Html.ActionLink("Fav Artists", "Artists", "TidalUserFavorites")</li>
+                    <li>@Html.ActionLink("Fav Albums", "Albums", "TidalUserFavorites")</li>
                 </ul>
                 @Html.Partial("Partials/TidalLogin")
             </div>
