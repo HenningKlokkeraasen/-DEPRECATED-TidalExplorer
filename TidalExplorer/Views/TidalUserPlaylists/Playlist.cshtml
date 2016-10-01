@@ -46,20 +46,7 @@
             <tr>
                 <td class="text-right">@(trackCounter++)</td>
                 <td>
-                    @{
-                        var artistCounter = 1;
-                    }
-                    @foreach (var artist in track.Artists)
-                    {
-                        <span>
-                            @artist.Name
-                            @if (artistCounter != track.Artists.Length)
-                            {
-                                @(artistCounter++)
-                                <span>+</span>
-                            }
-                        </span>
-                    }
+                    @TidalArtists.Render(track.Artists)
                 </td>
                 <td>@track.Title</td>
                 <td>
