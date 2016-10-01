@@ -1,42 +1,32 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using TidalExplorer.TidalIntegration;
 
 namespace TidalExplorer.Controllers
 {
-    public class TidalUserFavoritesController : Controller
+    public class TidalUserFavoritesController : BaseTidalController
     {
         [Authorize]
         public async Task<ActionResult> Artists()
         {
-            var session = await OpenTidlIntegrator.RestoreSessionFromClaimsIdentity(User.Identity);
-
-            if (session == null)
-                return new EmptyResult();
-
-            var favoriteArtists = await session.GetFavoriteArtists();
-
-            if (favoriteArtists == null)
-                return new EmptyResult();
-
-            return View("Artists", favoriteArtists);
+            return await ViewWithDataOrEmptyResult("Artists", session => session.GetFavoriteArtists());
         }
-        
 
         [Authorize]
         public async Task<ActionResult> Albums()
         {
-            var session = await OpenTidlIntegrator.RestoreSessionFromClaimsIdentity(User.Identity);
+            return await ViewWithDataOrEmptyResult("Albums", session => session.GetFavoriteAlbums());
+        }
 
-            if (session == null)
-                return new EmptyResult();
+        [Authorize]
+        public async Task<ActionResult> Tracks()
+        {
+            return await ViewWithDataOrEmptyResult("Tracks", session => session.GetFavoriteTracks());
+        }
 
-            var favoriteAlbums = await session.GetFavoriteAlbums();
-
-            if (favoriteAlbums == null)
-                return new EmptyResult();
-
-            return View("Albums", favoriteAlbums);
+        [Authorize]
+        public async Task<ActionResult> Playlists()
+        {
+            return await ViewWithDataOrEmptyResult("Playlists", session => session.GetFavoritePlaylists());
         }
     }
 }

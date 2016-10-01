@@ -113,6 +113,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseTidalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TidalUserFavoritesController.cs" />
     <Compile Include="Controllers\TidalUserController.cs" />
@@ -145,6 +146,9 @@
     <Content Include="Views\TidalUserFavorites\Artists.cshtml" />
     <Content Include="Views\TidalUserFavorites\Albums.cshtml" />
     <Content Include="App_Code\TidalArtists.cshtml" />
+    <Content Include="Views\TidalUserFavorites\Tracks.cshtml" />
+    <Content Include="Views\TidalUserFavorites\Playlists.cshtml" />
+    <Content Include="App_Code\TidalPlaylists.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -5,22 +5,12 @@ using TidalExplorer.TidalIntegration;
 
 namespace TidalExplorer.Controllers
 {
-    public class TidalUserPlaylistsController : Controller
+    public class TidalUserPlaylistsController : BaseTidalController
     {
         [Authorize]
         public async Task<ActionResult> Index()
         {
-            var session = await OpenTidlIntegrator.RestoreSessionFromClaimsIdentity(User.Identity);
-
-            if (session == null)
-                return new EmptyResult();
-
-            var playlists = await session.GetUserPlaylists();
-
-            if (playlists == null)
-                return new EmptyResult();
-
-            return View("Index", playlists);
+            return await ViewWithDataOrEmptyResult("Index", session => session.GetUserPlaylists());
         }
 
         [Authorize]

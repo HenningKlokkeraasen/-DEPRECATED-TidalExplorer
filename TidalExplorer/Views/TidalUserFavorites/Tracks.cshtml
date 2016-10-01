@@ -1,0 +1,88 @@
+﻿@using TidalExplorer.Models.Tidal
+@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.Base.JsonListItem<OpenTidl.Models.TrackModel>>
+@{
+    ViewBag.Title = "Your Favorite Tracks";
+    var counter = 1;
+}
+
+@section css{
+    <link rel="stylesheet" href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" />
+}
+
+<h2>Yer Favorite Tracks in Tidal</h2>
+<table id="playlists-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Artists</th>
+            <th>Title</th>
+            <th>Album Cover</th>
+            <th>Album</th>
+            <th>Duration</th>
+            <th>Faved</th>
+            <th>Version</th>
+            <th>Copyright</th>
+            <th>Allow Streaming</th>
+            <th>Stream Ready</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jsonListItem in Model.Items)
+        {
+            var created = jsonListItem.Created;
+
+            var track = jsonListItem.Item;
+            var trackId = track.Id;
+            var trackPopularity = track.Popularity;
+            var trackTrackNumber = track.TrackNumber;
+            var trackUrl = track.Url;
+            var trackVersion = track.Version;
+            var trackVolumeNumber = track.VolumeNumber;
+            var trackETag = track.ETag;
+
+            <tr>
+                <td>@(counter++)</td>
+                <td>@TidalArtists.Render(track.Artists)</td>
+                <td>@track.Title</td>
+                <td>
+                    @if (track.Album.Cover != null)
+                    {
+                        @TidalImage.Render(new ImageViewModel { ImageId = track.Album.Cover, Dimension = TidalImageDimension.AlbumCover, CssClasses = "thumb" })
+                    }
+                </td>
+                <td>@track.Album.Title</td>
+                <td class="nowrap text-right" data-order="@track.Duration">@DurationFormatter.FormatDuration(track.Duration)</td>
+                <td class="nowrap" data-order="@(created?.ToString("u"))">@created</td>
+                <td>@track.Version</td>
+                <td>@track.Copyright</td>
+                <td>
+                    @{
+                        if (track.AllowStreaming)
+                        {
+                            <span>v</span>
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        if (track.StreamReady)
+                        {
+                            <span>v</span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#playlists-table').DataTable({
+                paging: false
+            });
+        });
+    </script>
+}

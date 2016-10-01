@@ -1,0 +1,36 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using OpenTidl.Models
+@using TidalExplorer.Models.Tidal
+
+@helper ActionLinkWorkaround(WebViewPage page, string linkText, string actionName, string controllerName, object routeValueDictionary)
+{
+    @page.Html.ActionLink(linkText, actionName, controllerName, routeValueDictionary, null)
+}
+
+@helper RenderTableRow(WebViewPage page, PlaylistModel playlist, int counter, DateTime? favedDate = null)
+{
+    var playlistETag = playlist.ETag;
+
+    <tr>
+        <td>@counter</td>
+        <td>
+            @if (playlist.Image != null)
+            {
+                @TidalImage.Render(new ImageViewModel { ImageId = playlist.Image, Dimension = TidalImageDimension.PlaylistPic, CssClasses = "thumb" })
+            }
+        </td>
+        <td>@ActionLinkWorkaround(page, playlist.Title, "Playlist", "TidalUserPlaylists", new { playlistUuId = playlist.Uuid })</td>
+        <td class="nowrap" data-order="@(playlist.Created?.ToString("u"))">@playlist.Created</td>
+        <td class="nowrap" data-order="@(playlist.LastUpdated?.ToString("u"))">@playlist.LastUpdated</td>
+        <td class="nowrap text-right" data-order="@playlist.Duration">@DurationFormatter.FormatDuration(playlist.Duration)</td>
+        <td class="nowrap text-right">@playlist.NumberOfTracks</td>
+        @if (favedDate != null)
+        {
+            <td class="nowrap" data-order="@(favedDate.Value.ToString("u"))">@favedDate</td>
+        }
+        <td>@playlist.Description</td>
+        <td>@playlist.Creator.Name</td>
+        <td>@playlist.Type</td>
+    </tr>
+}

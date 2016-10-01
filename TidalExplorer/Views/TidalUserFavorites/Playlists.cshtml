@@ -1,6 +1,6 @@
-﻿@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.PlaylistModel>
+﻿@model OpenTidl.Models.Base.JsonList<OpenTidl.Models.Base.JsonListItem<OpenTidl.Models.PlaylistModel>>
 @{
-    ViewBag.Title = "Your Playlists";
+    ViewBag.Title = "Your Favorite Playlists";
     var counter = 1;
 }
 
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" />
 }
 
-<h2>Yer Tidal Playlists</h2>
+<h2>Yer Favorite Playlists in Tidal</h2>
 <table id="playlists-table" class="table table-striped">
     <thead>
         <tr>
@@ -19,18 +19,18 @@
             <th>Last updated</th>
             <th>Duration</th>
             <th>Tracks</th>
-
+            <th>Faved</th>
             <th>Description</th>
             <th>Creator</th>
             <th>Type</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var playlist in Model.Items)
+        @foreach (var jsonListItem in Model.Items)
         {
-
-
-            @TidalPlaylists.RenderTableRow(this, playlist, counter)
+            var created = jsonListItem.Created;
+            var playlist = jsonListItem.Item;
+            @TidalPlaylists.RenderTableRow(this, playlist, counter, created)
             {
                 counter++;
             }
