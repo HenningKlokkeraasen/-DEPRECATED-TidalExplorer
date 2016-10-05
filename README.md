@@ -1,3 +1,9 @@
+--DEPRECATED--
+
+Project incorporated into https://github.com/HenningKlokkeraasen/Clockwork.StreamingSwitcher
+
+-------------
+
 # TidalExplorer
 
 ## Goal
